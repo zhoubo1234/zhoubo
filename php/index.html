@@ -1,10 +1,131 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>PHP</title>
-</head>
-<body>
-	<p></p>
-</body>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>周波的个人博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/github-light.css" media="screen">
+    <style>
+            .ala{
+                    border:1px solid red;
+                    width: 200px;
+                    height: 200px;
+            }
+            pre{
+                margin: 0 auto;
+            }
+        
+    </style>
+
+  </head>
+  <body>
+    <section class="page-header" style="padding-top:20px;padding-bottom:0px;">
+   
+      <h2 class="project-tagline" style="margin-top:0px;">周波的个人博客</h2>
+      <a href="https://zhoubo1234.github.io/zhoubo" class="btn">首页</a>
+      <a href="https://zhoubo1234.github.io/zhoubo/php/index" class="btn">php</a>
+      <a href="https://zhoubo1234.github.io/zhoubo/http/index" class="btn">HTTP</a>
+      <a href="https://zhoubo1234.github.io/zhoubo" class="btn">微信开发</a>
+      <a href="" class="btn">MySQL</a>
+      <a href="" class="btn">Git</a>
+    </section>
+
+    <section class="main-content">
+    <div class="col-md-8 mainLeft">
+
+        <article class="post">
+               <div class="title-div">
+                      <h2>
+                             <a href="https://zhoubo1234.github.io/zhoubo/http/index">PHP Ajax 跨域问题最佳解决方案</a>
+                      </h2>
+                      <div>
+                            作者：周波 • 2016年10月30日
+                      </div>
+               </div>
+
+               <div class="post-content">
+                  
+			 <div class="article-body"><br>
+				<div class="article-intro">
+					<p>本文通过设置<strong>Access-Control-Allow-Origin</strong>来实现跨域。</p>
+					<p>例如：客户端的域名是client.runoob.com，而请求的域名是server.runoob.com。</p>
+					<p>如果直接使用ajax访问，会有以下错误：</p>
+					<pre class="prettyprint prettyprinted"><span class="typ">XMLHttpRequest</span><span class="pln"> cannot load http</span><span class="pun">:</span><span class="com">//server.runoob.com/server.php. No 'Access-Control-Allow-Origin' header is present on the requested resource.Origin 'http://client.runoob.com' is therefore not allowed access.</span></pre>
+					<h2>1、允许单个域名访问</h2>
+					<p>指定某域名（http://client.runoob.com）跨域访问，则只需在http://server.runoob.com/server.php文件头部添加如下代码：</p>
+					<pre class="prettyprint prettyprinted"><span class="pln">header</span><span class="pun">(</span><span class="str">'Access-Control-Allow-Origin:http://client.runoob.com'</span><span class="pun">);</span></pre>
+					<h2>2、允许多个域名访问</h2>
+
+<p>
+指定多个域名（http://client1.runoob.com、http://client2.runoob.com等）跨域访问，则只需在http://server.runoob.com/server.php文件头部添加如下代码：</p>
+<pre class="prettyprint prettyprinted"><span class="pln">$origin </span><span class="pun">=</span><span class="pln"> isset</span><span class="pun">(</span><span class="pln">$_SERVER</span><span class="pun">[</span><span class="str">'HTTP_ORIGIN'</span><span class="pun">])?</span><span class="pln"> $_SERVER</span><span class="pun">[</span><span class="str">'HTTP_ORIGIN'</span><span class="pun">]</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">''</span><span class="pun">;</span><span class="pln">  
+  
+$allow_origin </span><span class="pun">=</span><span class="pln"> array</span><span class="pun">(</span><span class="pln">  
+    </span><span class="str">'http://client1.runoob.com'</span><span class="pun">,</span><span class="pln">  
+    </span><span class="str">'http://client2.runoob.com'</span><span class="pln">  
+</span><span class="pun">);</span><span class="pln">  
+  
+</span><span class="kwd">if</span><span class="pun">(</span><span class="pln">in_array</span><span class="pun">(</span><span class="pln">$origin</span><span class="pun">,</span><span class="pln"> $allow_origin</span><span class="pun">)){</span><span class="pln">  
+    header</span><span class="pun">(</span><span class="str">'Access-Control-Allow-Origin:'</span><span class="pun">.</span><span class="pln">$origin</span><span class="pun">);</span><span class="pln">       
+</span><span class="pun">}</span><span class="pln"> </span></pre>
+					<h2>3、允许所有域名访问</h2>
+					<p>允许所有域名访问则只需在http://server.runoob.com/server.php文件头部添加如下代码：</p><p>
+					</p><pre class="prettyprint prettyprinted"><span class="pln">header</span><span class="pun">(</span><span class="str">'Access-Control-Allow-Origin:*'</span><span class="pun">);</span><span class="pln"> </span></pre>				</div>
+			 </div>
+		
+		 </div>
+      </article>
+
+
+	<article>
+		<div class="post-content">
+		 	<h2><font color="blue">php如何解决网站大流量与高并发的问题</font><h2>
+			
+首先，确认服务器硬件是否足够支持当前的流量。 
+
+<pre>普通的P4服务器一般最多能支持每天10万独立IP，如果访问量比这个还要大，
+那么必须首先配置一台更高性能的专用服务器才能解决问题,否则怎么优化都不可能彻底解决性能问题。 </pre>
+
+其次，优化数据库访问。 
+
+<pre>前台实现完全的静态化当然最好，可以完全不用访问数据库，不过对于频繁更新的网站，静态化往往不能满足某些功能。 
+
+缓存技术就是另一个解决方案，就是将动态数据存储到缓存文件中，动态网页直接调用这些文件，而不必再访问数据库，WordPress和Z-Blog都大量使用这种缓存技术。
+
+如果确实无法避免对数据库的访问，那么可以尝试优化数据库的查询SQL.避免使用Select * from这样的语句，每次查询只返回自己需要的结果，避免短时间内的大量SQL查询。 </pre>
+
+第三，禁止外部的盗链。 
+
+<pre>外部网站的图片或者文件盗链往往会带来大量的负载压力，因此应该严格限制外部对于自身的图片或者文件盗链，
+好在目前可以简单地通过refer来控制盗链，Apache自己就可以通过配置来禁止盗链，IIS也有一些第三方的ISAPI可以实现同样的功能。
+当然，伪造refer也可以通过代码来实现盗链，不过目前蓄意伪造refer盗链的还不多， 可以先不去考虑，或者使用非技术手段来解决，比如在图片上增加水印。 </pre>
+
+第四，控制大文件的下载。 
+
+<pre>大文件的下载会占用很大的流量，并且对于非SCSI硬盘来说，大量文件下载会消耗CPU，使得网站响应能力下降。因此，尽量不要提供超过2M的大文件下载，如果需要提供，建议将大文件放在另外一台服务器上。 </pre>
+
+第五，使用不同主机分流主要流量 
+
+<pre>将文件放在不同的主机上，提供不同的镜像供用户下载。比如如果觉得RSS文件占用流量大，那么使用FeedBurner或者FeedSky等服务将RSS输出放在其他主机上，这样别人访问的流量压力就大多集中在FeedBurner的主机上，RSS就不占用太多资源了。 </pre>
+
+第六，使用流量分析统计软件。 
+
+<pre>在网站上安装一个流量分析统计软件，可以即时知道哪些地方耗费了大量流量，哪些页面需要再进行优化，因此，解决流量问题还需要进行精确的统计分析才可以。推荐使用的流量分析统计软件是Google Analytics（Google分析）。。</pre>
+			
+		</div>
+
+	</article>
+
+        
+        </div>
+
+
+
+    </section>
+
+  
+  </body>
 </html>
